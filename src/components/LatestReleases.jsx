@@ -10,7 +10,9 @@ const LatestReleases = () => (
           xs={6}
           md={4}
           lg={3}
+          xl={2}
           className="d-flex justify-content-center px-0"
+          key={book.asin}
         >
           <Card className="mb-4 " style={{ width: "17rem" }}>
             <Card.Img
