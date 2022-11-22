@@ -13,9 +13,8 @@ function App() {
 
       <Welcome />
       <LatestReleases />
-      <div className="fixed-bottom">
-        <CustomFooter />
-      </div>
+
+      <CustomFooter />
     </div>
   );
 }
