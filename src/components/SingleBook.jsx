@@ -9,7 +9,12 @@ class SingleBook extends Component {
 
   render() {
     return (
-      <Col xs={6} md={4} lg={3} className="d-flex justify-content-center px-0">
+      <Col
+        xs={6}
+        md={4}
+        lg={3}
+        className="d-flex justify-content-center px-0 w-100"
+      >
         <Card className="mb-4 " style={{ width: "17rem" }}>
           <Card.Img
             variant="top"

@@ -1,5 +1,6 @@
 import { Component } from "react";
-import { ListGroup, Spinner } from "react-bootstrap";
+import { Row, Col, Button, ListGroup, Spinner } from "react-bootstrap";
+import DeleteButton from "./DeleteButton";
 
 class CommentArea extends Component {
   state = {
@@ -63,7 +64,18 @@ class CommentArea extends Component {
         {this.props.clickedBook && (
           <ListGroup>
             {this.state.comments.map((c) => (
-              <ListGroup.Item>{c.comment}</ListGroup.Item>
+              <ListGroup.Item key={c._id}>
+                <Row>
+                  <Col className="text-center">
+                    {c.rate} Stars | {c.comment}
+                  </Col>
+                </Row>
+                <Row>
+                  <Col className="text-center">
+                    <DeleteButton commentId={c._id} />
+                  </Col>
+                </Row>
+              </ListGroup.Item>
             ))}
           </ListGroup>
         )}
