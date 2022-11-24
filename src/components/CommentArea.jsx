@@ -1,5 +1,5 @@
 import { Component } from "react";
-import { Row, Col, Button, ListGroup, Spinner } from "react-bootstrap";
+import { Row, Col, ListGroup, Spinner } from "react-bootstrap";
 import DeleteButton from "./DeleteButton";
 
 class CommentArea extends Component {
