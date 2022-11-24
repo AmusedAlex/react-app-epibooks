@@ -6,7 +6,7 @@ const LatestReleases = () => (
   <div>
     <h1 className="text-center mb-3">Horror</h1>
     <Row>
-      {horror.map((book) => (
+      {horror.slice(0, 10).map((book) => (
         <SingleBook book={book} key={book.asin} />
       ))}
     </Row>

@@ -7,35 +7,29 @@ class SingleBook extends Component {
     clickedBook: null,
   };
 
-  toggleComment = () => {
-    this.state.setState((prevState) => ({
-      clickedBook: !prevState.clickedBook,
-    }));
-  };
-
   render() {
     return (
       <Col xs={6} md={4} lg={3} className="d-flex justify-content-center px-0">
-        <Card
-          onClick={() => {
-            this.state.clickedBook
-              ? this.setState({
-                  clickedBook: false,
-                })
-              : this.setState({
-                  clickedBook: true,
-                });
-          }}
-          className="mb-4 "
-          style={{ width: "17rem" }}
-        >
+        <Card className="mb-4 " style={{ width: "17rem" }}>
           <Card.Img
             variant="top"
             src={this.props.book.img}
             style={{ height: "30rem" }}
+            onClick={() => {
+              this.state.clickedBook
+                ? this.setState({
+                    clickedBook: false,
+                  })
+                : this.setState({
+                    clickedBook: true,
+                  });
+            }}
           />
           <Card.Body className="text-center">
-            <CommentArea clickedBook={this.state.clickedBook} />
+            <CommentArea
+              clickedBook={this.state.clickedBook}
+              asin={this.props.book.asin}
+            />
           </Card.Body>
         </Card>
       </Col>
