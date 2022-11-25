@@ -2,7 +2,7 @@ import { Component } from "react";
 import { Button } from "react-bootstrap";
 
 class DeleteButton extends Component {
-  onDeleteHandler = async (e) => {
+  onDeleteHandler = async () => {
     try {
       let response = await fetch(
         `https://striveschool-api.herokuapp.com/api/comments/${this.props.commentId}`,
@@ -15,7 +15,7 @@ class DeleteButton extends Component {
         }
       );
       if (response.ok) {
-        alert("Comment sucessfully deleted");
+        this.props.fetchComments();
       } else {
         alert("Something went wrong");
       }
@@ -28,7 +28,7 @@ class DeleteButton extends Component {
       <Button
         variant="danger"
         key={this.props.commentId}
-        onClick={(e) => this.onDeleteHandler()}
+        onClick={() => this.onDeleteHandler()}
       >
         Delete Comment
       </Button>

@@ -72,7 +72,10 @@ class CommentArea extends Component {
                 </Row>
                 <Row>
                   <Col className="text-center">
-                    <DeleteButton commentId={c._id} />
+                    <DeleteButton
+                      fetchComments={this.fetchComments}
+                      commentId={c._id}
+                    />
                   </Col>
                 </Row>
               </ListGroup.Item>
