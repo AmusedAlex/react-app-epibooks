@@ -41,12 +41,10 @@ class LatestReleases extends Component {
             </Row>
           </Col>
           {this.state.selectedBook && (
-            <Col xs={4}>
-              {/* {horror.slice(0, 1).map((book) => ( */}
+            <Col xs={4} className="text-center">
+              <h2>Comment Area</h2>
               <CommentArea selectedBook={this.state.selectedBook} />
               <AddComment selectedBook={this.state.selectedBook} />
-              {/* ))} */}
-              <div>Comment Area</div>
             </Col>
           )}
         </Row>

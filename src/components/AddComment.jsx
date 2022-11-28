@@ -34,7 +34,7 @@ class AddComment extends Component {
             this.setState({
               comment: "",
               rate: 1,
-              elementId: `${this.props.book.asin}`,
+              elementId: `${this.props.selectedBook}`,
             });
           } else {
             alert("Something went wrong");

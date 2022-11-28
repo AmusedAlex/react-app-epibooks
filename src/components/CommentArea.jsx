@@ -63,9 +63,7 @@ class CommentArea extends Component {
     return (
       <div>
         {this.state.isLoading && (
-          <Spinner animation="border" role="status" variant="warning">
-            <span className="sr-only">Loading...</span>
-          </Spinner>
+          <Spinner animation="border" role="status" variant="danger"></Spinner>
         )}
         {this.props.selectedBook && (
           <ListGroup>
