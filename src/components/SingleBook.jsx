@@ -2,9 +2,9 @@ import { Component } from "react";
 import { Card } from "react-bootstrap";
 
 class SingleBook extends Component {
-  state = {
-    clickedBook: null,
-  };
+  // state = {
+  //   clickedBook: null,
+  // };
 
   render() {
     return (
@@ -24,6 +24,7 @@ class SingleBook extends Component {
                   clickedBook: true,
                 });
           }}
+          style={{ height: "100%" }}
         />
       </Card>
     );
