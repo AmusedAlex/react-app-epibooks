@@ -10,10 +10,20 @@ class CommentArea extends Component {
     commentId: "",
   };
 
+  componentDidMount = () => {
+    this.fetchComments();
+  };
+
+  componentDidUpdate = (prevProps, prevState) => {
+    if (prevProps.selectedBook !== this.props.selectedBook) {
+      this.fetchComments();
+    }
+  };
+
   fetchComments = async () => {
     try {
       let response = await fetch(
-        `https://striveschool-api.herokuapp.com/api/comments/${this.props.asin}`,
+        `https://striveschool-api.herokuapp.com/api/comments/${this.props.selectedBook}`,
         {
           method: "GET",
           headers: {
@@ -49,10 +59,6 @@ class CommentArea extends Component {
     }
   };
 
-  componentDidMount() {
-    this.fetchComments(this.props.asin);
-  }
-
   render() {
     return (
       <div>
@@ -61,7 +67,7 @@ class CommentArea extends Component {
             <span className="sr-only">Loading...</span>
           </Spinner>
         )}
-        {this.props.clickedBook && (
+        {this.props.selectedBook && (
           <ListGroup>
             {this.state.comments.map((c) => (
               <ListGroup.Item key={c._id}>

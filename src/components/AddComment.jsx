@@ -5,7 +5,7 @@ class AddComment extends Component {
   state = {
     comment: "",
     rate: 1,
-    elementId: `${this.props.book.asin}`,
+    elementId: `${this.props.selectedBook}`,
   };
 
   onChangeHandler = (value, fieldToSet) => {

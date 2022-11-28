@@ -4,6 +4,7 @@ import CustomNavbar from "./components/CustomNavBar";
 import CustomFooter from "./components/CustomFooter";
 import Welcome from "./components/Welcome";
 import LatestReleases from "./components/LatestReleases";
+import { Container } from "react-bootstrap";
 
 function App() {
   return (
@@ -11,8 +12,9 @@ function App() {
       <CustomNavbar subtitle="Read the newest Books!" />
 
       <Welcome />
-      <LatestReleases />
-
+      <Container fluid>
+        <LatestReleases />
+      </Container>
       <CustomFooter />
     </div>
   );

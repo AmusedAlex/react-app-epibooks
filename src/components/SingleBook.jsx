@@ -1,6 +1,5 @@
 import { Component } from "react";
-import { Col, Card } from "react-bootstrap";
-import CommentArea from "./CommentArea";
+import { Card } from "react-bootstrap";
 
 class SingleBook extends Component {
   state = {
@@ -9,35 +8,24 @@ class SingleBook extends Component {
 
   render() {
     return (
-      <Col
-        xs={6}
-        md={4}
-        lg={3}
-        className="d-flex justify-content-center px-0 w-100"
+      <Card
+        className="mb-4"
+        onClick={() => this.props.changeSelectedBook(this.props.book.asin)}
       >
-        <Card className="mb-4 " style={{ width: "17rem" }}>
-          <Card.Img
-            variant="top"
-            src={this.props.book.img}
-            style={{ height: "30rem" }}
-            onClick={() => {
-              this.state.clickedBook
-                ? this.setState({
-                    clickedBook: false,
-                  })
-                : this.setState({
-                    clickedBook: true,
-                  });
-            }}
-          />
-          <Card.Body className="text-center">
-            <CommentArea
-              clickedBook={this.state.clickedBook}
-              asin={this.props.book.asin}
-            />
-          </Card.Body>
-        </Card>
-      </Col>
+        <Card.Img
+          variant="top"
+          src={this.props.book.img}
+          onClick={() => {
+            this.state.clickedBook
+              ? this.setState({
+                  clickedBook: false,
+                })
+              : this.setState({
+                  clickedBook: true,
+                });
+          }}
+        />
+      </Card>
     );
   }
 }
