@@ -3,7 +3,7 @@ import { MDBFooter } from "mdb-react-ui-kit";
 
 const CustomFooter = () => {
   return (
-    <div className="fixed-bottom">
+    <div className="">
       <MDBFooter bgColor="light" className="text-center text-lg-left">
         <div
           className="text-center p-3"

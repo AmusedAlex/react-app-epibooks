@@ -12,7 +12,7 @@ function App() {
       <CustomNavbar subtitle="Read the newest Books!" />
 
       <Welcome />
-      <Container fluid>
+      <Container fluid className="mb-5">
         <LatestReleases />
       </Container>
       <CustomFooter />

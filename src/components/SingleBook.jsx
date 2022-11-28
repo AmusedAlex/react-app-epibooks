@@ -9,7 +9,7 @@ class SingleBook extends Component {
   render() {
     return (
       <Card
-        className="mb-4"
+        className="mb-4 cardElement"
         onClick={() => this.props.changeSelectedBook(this.props.book.asin)}
       >
         <Card.Img
