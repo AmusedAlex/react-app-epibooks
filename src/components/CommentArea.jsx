@@ -1,29 +1,46 @@
-import { Component } from "react";
+import { useState, useEffect } from "react";
 import { Row, Col, ListGroup, Spinner } from "react-bootstrap";
 import DeleteButton from "./DeleteButton";
 
-class CommentArea extends Component {
-  state = {
-    comments: [],
-    isLoading: true,
-    isError: false,
-    commentId: "",
-  };
+const CommentArea = (props) => {
+  // state = {
+  //   comments: [],
+  //   isLoading: true,
+  //   isError: false,
+  //   commentId: "",
+  // };
 
-  componentDidMount = () => {
-    this.fetchComments();
-  };
+  let [comments, setComments] = useState([]);
+  let [isLoading, setIsLoading] = useState(true);
+  let [isError, setIsError] = useState(false);
+  let [commentId, setCommentId] = useState("");
 
-  componentDidUpdate = (prevProps, prevState) => {
-    if (prevProps.selectedBook !== this.props.selectedBook) {
-      this.fetchComments();
-    }
-  };
+  // !let componentDidMount = () => {
+  //   fetchComments();
+  // };
 
-  fetchComments = async () => {
+  useEffect(() => {
+    console.log("componentDidMount");
+    fetchComments();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
+  // !let componentDidUpdate = (prevProps, prevState) => {
+  //   if (prevProps.selectedBook !== props.selectedBook) {
+  //     fetchComments();
+  //   }
+  // };
+
+  useEffect(() => {
+    console.log("componentDidUpdate");
+    fetchComments();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [props.selectedBook]);
+
+  let fetchComments = async () => {
     try {
       let response = await fetch(
-        `https://striveschool-api.herokuapp.com/api/comments/${this.props.selectedBook}`,
+        `https://striveschool-api.herokuapp.com/api/comments/${props.selectedBook}`,
         {
           method: "GET",
           headers: {
@@ -36,59 +53,51 @@ class CommentArea extends Component {
         let data = await response.json();
         console.log("🚀 data", data);
         setTimeout(() => {
-          this.setState({
-            comments: data,
-            isLoading: false,
-          });
+          setComments(data);
+          setIsLoading(false);
         }, 1000);
       } else {
         console.log("Fetching failed!");
         setTimeout(() => {
-          this.setState({
-            isLoading: false,
-            isError: true,
-          });
+          setIsLoading(false);
+          setIsError(true);
         }, 1000);
       }
     } catch (error) {
       console.log(error);
-      this.setState({
-        isLoading: false,
-        isError: true,
-      });
+      setIsLoading(false);
+      setIsError(true);
     }
   };
 
-  render() {
-    return (
-      <div>
-        {this.state.isLoading && (
-          <Spinner animation="border" role="status" variant="danger"></Spinner>
-        )}
-        {this.props.selectedBook && (
-          <ListGroup>
-            {this.state.comments.map((c) => (
-              <ListGroup.Item key={c._id}>
-                <Row>
-                  <Col className="text-center">
-                    {c.rate} Stars | {c.comment}
-                  </Col>
-                </Row>
-                <Row>
-                  <Col className="text-center">
-                    <DeleteButton
-                      fetchComments={this.fetchComments}
-                      commentId={c._id}
-                    />
-                  </Col>
-                </Row>
-              </ListGroup.Item>
-            ))}
-          </ListGroup>
-        )}
-      </div>
-    );
-  }
-}
+  return (
+    <div>
+      {isLoading && (
+        <Spinner animation="border" role="status" variant="danger"></Spinner>
+      )}
+      {props.selectedBook && (
+        <ListGroup>
+          {comments.map((c) => (
+            <ListGroup.Item key={c._id}>
+              <Row>
+                <Col className="text-center">
+                  {c.rate} Stars | {c.comment}
+                </Col>
+              </Row>
+              <Row>
+                <Col className="text-center">
+                  <DeleteButton
+                    fetchComments={fetchComments}
+                    commentId={c._id}
+                  />
+                </Col>
+              </Row>
+            </ListGroup.Item>
+          ))}
+        </ListGroup>
+      )}
+    </div>
+  );
+};
 
 export default CommentArea;

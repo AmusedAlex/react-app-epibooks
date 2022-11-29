@@ -1,11 +1,10 @@
-import { Component } from "react";
 import { Button } from "react-bootstrap";
 
-class DeleteButton extends Component {
-  onDeleteHandler = async () => {
+const DeleteButton = (props) => {
+  let onDeleteHandler = async () => {
     try {
       let response = await fetch(
-        `https://striveschool-api.herokuapp.com/api/comments/${this.props.commentId}`,
+        `https://striveschool-api.herokuapp.com/api/comments/${props.commentId}`,
         {
           method: "DELETE",
           headers: {
@@ -15,7 +14,7 @@ class DeleteButton extends Component {
         }
       );
       if (response.ok) {
-        this.props.fetchComments();
+        props.fetchComments();
       } else {
         alert("Something went wrong");
       }
@@ -23,17 +22,16 @@ class DeleteButton extends Component {
       console.log(error);
     }
   };
-  render() {
-    return (
-      <Button
-        variant="danger"
-        key={this.props.commentId}
-        onClick={() => this.onDeleteHandler()}
-      >
-        Delete Comment
-      </Button>
-    );
-  }
-}
+
+  return (
+    <Button
+      variant="danger"
+      key={props.commentId}
+      onClick={() => onDeleteHandler()}
+    >
+      Delete Comment
+    </Button>
+  );
+};
 
 export default DeleteButton;
